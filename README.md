@@ -8,5 +8,5 @@
 2. `git clone https://github.com/Assa228/StegsnowBruteForcer.git`
 
 # Usage :
-
-* python stegsnowbruteforcer.py [-h] --file FILE --wordlist WORDLIST --output OUTPUT [--keyword KEYWORD]
+* cd StegsnowBruteForcer
+* python stegsnowbruteforcer.py --file flag.txt --wordlist /usr/share/wordlists/rockyou.txt --keyword flag{ --output resultats.txt

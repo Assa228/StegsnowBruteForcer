@@ -13,7 +13,7 @@
 * python stegsnowbruteforcer.py --file flag.txt --wordlist /usr/share/wordlists/rockyou.txt --keyword flag{ --output resultats.txt
 
 # Example Image
-![alt text](https://raw.githubusercontent.com/Antu7/password-generator/master/example.jpg)](https://github.com/Assa228/StegsnowBruteForcer/blob/main/poc.png)
+![alt text](https://github.com/Assa228/StegsnowBruteForcer/blob/main/poc.png)
 
 
 # Contributing

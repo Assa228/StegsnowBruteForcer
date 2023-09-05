@@ -15,7 +15,7 @@
 # Example :
 * Poc
 
-![poc.jpg](https://github.com/Assa228/StegsnowBruteForcer/blob/main/proof_of_concept.jpg)
+![poc.jpg](https://github.com/Assa228/StegsnowBruteForcer/blob/main/poc.jpg)
 
 
 * Help

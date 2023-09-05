@@ -13,7 +13,7 @@
 * python stegsnowbruteforcer.py --file flag.txt --wordlist /usr/share/wordlists/rockyou.txt --keyword flag{ --output resultats.txt
 
 # Example Image
-![poc.png](https://github.com/Assa228/StegsnowBruteForcer/blob/main/proof_of_concept.png)
+![poc.jpg](https://github.com/Assa228/StegsnowBruteForcer/blob/main/proof_of_concept.jpg)
 
 
 # Contributing

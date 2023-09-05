@@ -58,7 +58,6 @@ def process_passwords(file_path, output_file, keyword=None):
             password = password_queue.get(timeout=1)  # Wait for a password, timeout to check if we should exit
         except queue.Empty:
             break  # No more passwords, exit the thread
-        
         try_password(file_path, password, output_file, keyword)
         password_queue.task_done()
 

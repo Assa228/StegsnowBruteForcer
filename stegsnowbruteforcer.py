@@ -84,7 +84,7 @@ start_index = int(0.00 * total_passwords)  # progress percentage
 
 # Using the tqdm library to display real progress
 with ThreadPoolExecutor(max_workers=num_threads) as executor:
-    with tqdm(total=total_passwords - start_index) as pbar:
+    with tqdm(total=total_passwords - start_index, ncols=80) as pbar:
         # Create a queue for passwords
         password_queue = queue.Queue()
         for line in lines[start_index:]:

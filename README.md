@@ -15,12 +15,12 @@
 # Example :
 * Poc
 
-![poc.jpg](https://github.com/Assa228/StegsnowBruteForcer/blob/main/poc.jpg)
+![poc.png](https://github.com/Assa228/StegsnowBruteForcer/blob/main/poc.png)
 
 
 * Help
 
-![help.jpg](https://github.com/Assa228/StegsnowBruteForcer/blob/main/help.jpg)
+![help.png](https://github.com/Assa228/StegsnowBruteForcer/blob/main/help.png)
 
 
 # Contributing :

@@ -1,8 +1,4 @@
-import argparse
-import subprocess
-import re
-import queue
-import threading
+import argparse, subprocess, re, queue, threading 
 from tqdm import tqdm
 from concurrent.futures import ThreadPoolExecutor
 

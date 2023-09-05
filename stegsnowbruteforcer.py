@@ -25,7 +25,7 @@ def try_password(file_path, password, output_file, keyword=None):
     command = f'stegsnow -C -Q -p "{password}" {file_path}'
     result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='latin-1')
 
-    if keyword and re.search(keyword, result.stdout):
+    if keyword and re.search(keyword, result.stdout, re.IGNORECASE):
         with open(output_file, 'a') as out_file:
             out_file.write(f'Message extracted with password: {password}\n')
             out_file.write(result.stdout + '\n')
@@ -33,7 +33,7 @@ def try_password(file_path, password, output_file, keyword=None):
         print(BLUE + "Here is the decoded message:")
         lines = result.stdout.split('\n')
         for line in lines:
-            if keyword in line:
+            if re.search(keyword, line, re.IGNORECASE):
                 print(RED + line + ENDC)
 
     elif result.returncode == 0:

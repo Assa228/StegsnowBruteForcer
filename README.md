@@ -9,10 +9,14 @@
 
 3. `pip install -r requirements.txt`
 
-# Usage :
+# Usage example:
 * python stegsnowbruteforcer.py --file flag.txt --wordlist /usr/share/wordlists/rockyou.txt --keyword flag{ --output resultats.txt
 
 # Example Image
+* Help
+![help.jpg](https://github.com/Assa228/StegsnowBruteForcer/blob/main/help.jpg)
+
+* Poc
 ![poc.jpg](https://github.com/Assa228/StegsnowBruteForcer/blob/main/proof_of_concept.jpg)
 
 

@@ -1,19 +1,21 @@
 import argparse
 import subprocess
-import sys
 import re
 from concurrent.futures import ThreadPoolExecutor
+from tqdm import tqdm
 
-# Codes ANSI pour les couleurs
+# ANSI color codes
 RED = '\033[91m'
 BLUE = '\033[94m'
 ENDC = '\033[0m'
+GREEN = '\033[92m'
 
 signature = """
 ***********************************************************
 *                                                         *
-*                Script d'attaque de force brute          *
-*                         by Assa                         *
+*         Stegsnow Password Brute-Force Attack            *
+*                    made by Assa228                      *
+*     https://github.com/Assa228/StegsnowBruteForcer      *
 *                                                         *
 ***********************************************************
 """
@@ -26,10 +28,10 @@ def try_password(file_path, password, output_file, keyword=None):
 
     if keyword and re.search(keyword, result.stdout):
         with open(output_file, 'a') as out_file:
-            out_file.write(f'Message extrait avec le mot de passe : {password}\n')
+            out_file.write(f'Message extracted with password: {password}\n')
             out_file.write(result.stdout + '\n')
-        print(BLUE + f"\nMot clé '{keyword}' trouvé avec le mot de passe : {password}" + ENDC)
-        print(BLUE + "Message décodé:")
+        print(BLUE + f"\nKeyword " + GREEN + f"'{keyword}'" + BLUE + f" found with the password: " + RED + f"{password}" + ENDC)
+        print(BLUE + "Here is the decoded message:")
         lines = result.stdout.split('\n')
         for line in lines:
             if keyword in line:
@@ -37,17 +39,21 @@ def try_password(file_path, password, output_file, keyword=None):
 
     elif result.returncode == 0:
         with open(output_file, 'a') as out_file:
-            out_file.write(f'Message extrait avec le mot de passe : {password}\n')
+            out_file.write(f'Message extracted with password: {password}\n')
             out_file.write(result.stdout + '\n')
     else:
         with open(output_file, 'a') as out_file:
-            out_file.write(f"Tentative avec le mot de passe '{password}' a échoué.\n")
+            out_file.write(f"Attempt with password '{password}' failed.\n")
 
-parser = argparse.ArgumentParser(description='Script d\'attaque de force brute pour stegsnow')
-parser.add_argument('--file', required=True, help='Chemin du fichier cible')
-parser.add_argument('--wordlist', required=True, help='Chemin du fichier de mots de passe')
-parser.add_argument('--output', required=True, help='Chemin du fichier de sortie des résultats')
-parser.add_argument('--keyword', help='Mot clé à rechercher dans les résultats')
+    # Update the progress bar when the task is completed
+    pbar.update(1)
+
+parser = argparse.ArgumentParser(description='Brute-Force Attack Script for Stegsnow')
+parser.add_argument('--file', required=True, help='Path to the target file')
+parser.add_argument('--wordlist', required=True, help='Path to the password file')
+parser.add_argument('--output', required=True, help='Path to the output results file')
+parser.add_argument('--keyword', help='Keyword to search in the results')
+parser.add_argument('--threads', type=int, default=4, help='Number of threads (default: 4)')
 args = parser.parse_args()
 
 file_path = args.file
@@ -55,30 +61,23 @@ password_file = args.wordlist
 output_file = args.output
 keyword = args.keyword
 
-# Charger la liste des mots de passe depuis le fichier rockyou.txt
+# Load the list of passwords from the wordlist file
 with open(password_file, 'rb') as f:
     lines = f.readlines()
 
-num_threads = 4  # nombre de threads
+num_threads = args.threads  # Use the value specified by the user or the default value (4)
 total_passwords = len(lines)
-start_index = int(0.00 * total_passwords)  # pourcentage d'avancement
-progress = 0
+start_index = int(0.00 * total_passwords)  # progress percentage
 
+# Using the tqdm library to display real progress
 with ThreadPoolExecutor(max_workers=num_threads) as executor:
-    for line in lines[start_index:]:
-        try:
-            password = line.decode('latin-1').strip()
-        except UnicodeDecodeError:
-            continue
+    with tqdm(total=total_passwords - start_index) as pbar:
+        for line in lines[start_index:]:
+            try:
+                password = line.decode('latin-1').strip()
+            except UnicodeDecodeError:
+                continue
 
-        executor.submit(try_password, file_path, password, output_file, keyword)
+            executor.submit(try_password, file_path, password, output_file, keyword)
 
-        # Mise à jour de la progression et affichage du pourcentage
-        progress += 1
-        percentage = ((start_index + progress) / total_passwords) * 100
-
-        # Effacer la ligne précédente et afficher le nouveau pourcentage
-        sys.stdout.write("\r" + f"Progression : {percentage:.2f}%")
-        sys.stdout.flush()
-
-print("\nFin de l'attaque de force brute. Les résultats ont été enregistrés dans", output_file)
+print("\nBrute-force attack completed. The results have been saved in", output_file)

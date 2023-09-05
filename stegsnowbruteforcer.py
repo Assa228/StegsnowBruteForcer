@@ -26,7 +26,7 @@ signature = """
 print(signature)
 
 def try_password(file_path, password, output_file, keyword=None):
-    command = f'stegsnow -C -p "{password}" {file_path}'
+    command = f'stegsnow -C -Q -p "{password}" {file_path}'
     result = subprocess.run(command, shell=True, stdout=subprocess.PIPE, stderr=subprocess.PIPE, encoding='latin-1')
 
     if keyword and re.search(keyword, result.stdout):

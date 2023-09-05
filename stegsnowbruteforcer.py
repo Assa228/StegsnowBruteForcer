@@ -62,7 +62,7 @@ parser.add_argument('--file', required=True, help='Path to the target file')
 parser.add_argument('--wordlist', required=True, help='Path to the password file')
 parser.add_argument('--output', required=True, help='Path to the output results file')
 parser.add_argument('--keyword', help='Keyword to search in the results')
-parser.add_argument('--threads', type=int, default=2, help='Number of threads (default: 2)')
+parser.add_argument('--threads', type=int, default=10, help='Number of threads (default: 10)')
 args = parser.parse_args()
 
 file_path = args.file
@@ -74,7 +74,7 @@ keyword = args.keyword
 with open(password_file, 'rb') as f:
     lines = f.readlines()
 
-num_threads = args.threads  # Use the value specified by the user or the default value (2)
+num_threads = args.threads  # Use the value specified by the user or the default value (10)
 total_passwords = len(lines)
 start_index = int(0.00 * total_passwords)  # progress percentage
 

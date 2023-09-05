@@ -20,7 +20,7 @@
 
 * Help
 
-![help.png](https://github.com/Assa228/StegsnowBruteForcer/blob/main/help.png)
+![help.jpg](https://github.com/Assa228/StegsnowBruteForcer/blob/main/help.jpg)
 
 
 # Contributing :

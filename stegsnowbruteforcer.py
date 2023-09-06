@@ -13,7 +13,7 @@ signature = """
 ***********************************************************
 *                                                         *
 *         Stegsnow Password Brute-Force Attack            *
-*                    made by Assa228                      *
+*                    made by Assa                         *
 *     https://github.com/Assa228/StegsnowBruteForcer      *
 *                                                         *
 ***********************************************************
